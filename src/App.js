@@ -1,6 +1,8 @@
 function App() {
   return (
-    <div className="App">Tanmay has started creating another masterpiece</div>
+    <div className="text-3xl font-bold underline">
+      Tanmay has started creating another masterpiece
+    </div>
   );
 }
 
