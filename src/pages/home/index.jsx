@@ -4,9 +4,11 @@ import Container from "../../components/Container";
 import Search from "../../components/Search";
 import Weather from "../../components/weather";
 import api from "../../constants/api";
+import WeatherGlobe from "./WeatherGlobe";
 
 const Home = () => {
   const [city, setCity] = useState();
+  const [labelsData, setLabelsData] = useState();
   const [loading, setLoading] = useState(false);
   const [weatherData, setWeatherData] = useState();
 
@@ -27,11 +29,20 @@ const Home = () => {
       }
       console.log(data);
       setWeatherData(data);
+      setLabelsData([
+        {
+          lat: data.coord.lat,
+          lon: data.coord.lon,
+          name: city,
+        },
+      ]);
       setLoading(false);
+      setCity("");
     } catch (error) {
       console.log(error.message);
       if (error.message === "404") {
         toast.error("Please enter a valid city");
+        setCity(null);
       } else if (error.message === "401") {
         toast.error("Exceeded API limit for the day, come back tomorrow.");
       } else {
@@ -41,16 +52,20 @@ const Home = () => {
     }
   };
   return (
-    <div className="m-auto p-2 mt-16" style={{ width: "380px" }}>
-      <Search
-        placeholder="Enter City"
-        setCity={setCity}
-        onSearch={handleSeacrch}
-        loading={loading}
-      />
-      <Container>
-        <Weather weather={weatherData} loading={loading} />
-      </Container>
+    <div className="flex flex-row">
+      <WeatherGlobe labelsData={labelsData} />
+      <div className="m-auto p-2 mt-16" style={{ width: "380px" }}>
+        <Search
+          placeholder="Enter City"
+          city={city}
+          setCity={setCity}
+          onSearch={handleSeacrch}
+          loading={loading}
+        />
+        <Container>
+          <Weather weather={weatherData} loading={loading} />
+        </Container>
+      </div>
     </div>
   );
 };
