@@ -46,6 +46,7 @@ const Home = () => {
         placeholder="Enter City"
         setCity={setCity}
         onSearch={handleSeacrch}
+        loading={loading}
       />
       <Container>
         <Weather weather={weatherData} loading={loading} />

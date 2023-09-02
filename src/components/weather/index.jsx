@@ -6,6 +6,7 @@ import humidity from "../../assets/icons/humidity.svg";
 import wind from "../../assets/icons/wind.svg";
 import pressure from "../../assets/icons/pressure.svg";
 import Spinner from "../../assets/Spinner";
+import appLogo from "../../assets/weather-app.png";
 
 const Location = styled.div`
   margin: 15px auto;
@@ -91,8 +92,18 @@ const Weather = ({ weather, loading = true }) => {
           </WeatherInfoContainer>
         </>
       ) : (
-        <div className="flex h-full">
-          <span className="m-auto">Search for a City</span>
+        <div className="flex h-full flex-col">
+          <span className="block text-center text-sm font-medium">
+            Hello AR
+          </span>
+          <span className="m-auto text-center text-sm">
+            <img src={appLogo} className="w-16 mx-auto" />
+            <div className="font-medium text-2xl mb-2 mt-4">
+              Weather Station Dashboard
+            </div>
+            Search for a City
+          </span>
+          <span className="block text-center text-xs">- Tanmay</span>
         </div>
       )}
     </>

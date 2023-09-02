@@ -23,6 +23,10 @@ const weatherIcons = {
   "10n": rainNight,
   "11d": storm,
   "11n": storm,
+  "13d": "http://openweathermap.org/img/wn/13d@2x.png",
+  "13n": "http://openweathermap.org/img/wn/13d@2x.png",
+  "50d": "http://openweathermap.org/img/wn/50d@2x.png",
+  "50n": "http://openweathermap.org/img/wn/50d@2x.png",
 };
 
 export default weatherIcons;
