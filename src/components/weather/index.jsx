@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Parameter from "./Parameter";
-import weatherIcons from "../../config/weatherIcons";
+import weatherIcons from "../../constants/weatherIcons";
 import sun from "../../assets/icons/sun.svg";
 import humidity from "../../assets/icons/humidity.svg";
 import wind from "../../assets/icons/wind.svg";
 import pressure from "../../assets/icons/pressure.svg";
+import Spinner from "../../assets/Spinner";
 
 const Location = styled.div`
   margin: 15px auto;
@@ -44,7 +45,7 @@ const WeatherInfoContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const Weather = ({ weather }) => {
+const Weather = ({ weather, loading = true }) => {
   const isDay = weather?.weather[0].icon?.includes("d");
   const getTime = (timeStamp) => {
     return `${new Date(timeStamp * 1000).getHours()} : ${new Date(
@@ -53,32 +54,47 @@ const Weather = ({ weather }) => {
   };
   return (
     <>
-      <WeatherContainer>
-        <Condition>
-          <span>{`${Math.floor(weather?.main?.temp - 273)}°C`}</span>
-          {`  |  ${weather?.weather[0].description}`}
-        </Condition>
-        <WeatherIcon src={weatherIcons[weather?.weather[0].icon]} />
-      </WeatherContainer>
-      <Location>{`${weather?.name}, ${weather?.sys?.country}`}</Location>
-      <WeatherInfoContainer>
-        <Parameter
-          name={isDay ? "sunset" : "sunrise"}
-          icon={sun}
-          value={`${getTime(weather?.sys[isDay ? "sunset" : "sunrise"])}`}
-        />
-        <Parameter
-          name="humidity"
-          icon={humidity}
-          value={weather?.main?.humidity}
-        />
-        <Parameter name="wind" icon={wind} value={weather?.wind?.speed} />
-        <Parameter
-          name="pressure"
-          icon={pressure}
-          value={weather?.main?.pressure}
-        />
-      </WeatherInfoContainer>
+      {loading ? (
+        <div className="flex h-full">
+          <div className="m-auto" role="status">
+            <Spinner />
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      ) : weather ? (
+        <>
+          <WeatherContainer>
+            <Condition>
+              <span>{`${Math.floor(weather?.main?.temp - 273)}°C`}</span>
+              {`  |  ${weather?.weather[0].description}`}
+            </Condition>
+            <WeatherIcon src={weatherIcons[weather?.weather[0].icon]} />
+          </WeatherContainer>
+          <Location>{`${weather?.name}, ${weather?.sys?.country}`}</Location>
+          <WeatherInfoContainer>
+            <Parameter
+              name={isDay ? "sunset" : "sunrise"}
+              icon={sun}
+              value={`${getTime(weather?.sys[isDay ? "sunset" : "sunrise"])}`}
+            />
+            <Parameter
+              name="humidity"
+              icon={humidity}
+              value={weather?.main?.humidity}
+            />
+            <Parameter name="wind" icon={wind} value={weather?.wind?.speed} />
+            <Parameter
+              name="pressure"
+              icon={pressure}
+              value={weather?.main?.pressure}
+            />
+          </WeatherInfoContainer>
+        </>
+      ) : (
+        <div className="flex h-full">
+          <span className="m-auto">Search for a City</span>
+        </div>
+      )}
     </>
   );
 };

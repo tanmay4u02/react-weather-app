@@ -1,25 +1,43 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import Container from "../../components/Container";
 import Search from "../../components/Search";
 import Weather from "../../components/weather";
+import api from "../../constants/api";
 
 const Home = () => {
   const [city, setCity] = useState();
+  const [loading, setLoading] = useState(false);
   const [weatherData, setWeatherData] = useState();
 
   const handleSeacrch = async () => {
+    setWeatherData(null);
+    if (!city || city === "") {
+      toast.error("Please enter a City!");
+      return;
+    }
+    setLoading(true);
     try {
       const response = await fetch(
-        "https://api.openweathermap.org/data/2.5/weather?q=pune&appid=fe4feefa8543e06d4f3c66d92c61b69c"
+        `${api.base_url}/weather?q=${city}&appid=${api.key}`
       );
       const data = await response.json();
       if (!response.ok) {
-        throw data;
+        throw { status: response.status, data };
       }
       console.log(data);
       setWeatherData(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      if (error.status === 404) {
+        toast.error("Please enter a valid city");
+      } else if (error.status === 401) {
+        toast.error("Server issue, try again later");
+      } else {
+        toast.error("Something went wrong");
+      }
+      setLoading(false);
     }
   };
   return (
@@ -30,7 +48,7 @@ const Home = () => {
         onSearch={handleSeacrch}
       />
       <Container>
-        <Weather weather={weatherData} />
+        <Weather weather={weatherData} loading={loading} />
       </Container>
     </div>
   );

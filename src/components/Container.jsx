@@ -2,7 +2,7 @@ const Container = ({ sx, children }) => {
   return (
     <div
       className={`p-3 flex-grow bg-white rounded-md drop-shadow-lg ${sx}`}
-      style={{ width: "380px" }}
+      style={{ width: "380px", height: "450px" }}
     >
       {children}
     </div>
