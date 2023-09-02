@@ -6,7 +6,7 @@ import humidity from "../../assets/icons/humidity.svg";
 import wind from "../../assets/icons/wind.svg";
 import pressure from "../../assets/icons/pressure.svg";
 import Spinner from "../../assets/Spinner";
-import appLogo from "../../assets/weather-app.png";
+import appLogo from "../../assets/weather-app-2.png";
 
 const Location = styled.div`
   margin: 15px auto;
@@ -97,7 +97,7 @@ const Weather = ({ weather, loading = true }) => {
             Hello AR
           </span>
           <span className="m-auto text-center text-sm">
-            <img src={appLogo} className="w-16 mx-auto" alt="App logo" />
+            <img src={appLogo} className="w-24 mx-auto" alt="App logo" />
             <div className="font-medium text-2xl mb-2 mt-4">
               Weather Station Dashboard
             </div>
