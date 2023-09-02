@@ -52,21 +52,29 @@ const Home = () => {
     }
   };
   return (
-    <div className="flex flex-row">
-      <WeatherGlobe labelsData={labelsData} />
-      <div className="m-auto p-2 mt-16" style={{ width: "380px" }}>
-        <Search
-          placeholder="Enter City"
-          city={city}
-          setCity={setCity}
-          onSearch={handleSeacrch}
-          loading={loading}
-        />
-        <Container>
-          <Weather weather={weatherData} loading={loading} />
-        </Container>
+    <>
+      <div className="flex flex-row">
+        <WeatherGlobe labelsData={labelsData} />
+        <div className="m-auto p-2 mt-24" style={{ width: "380px" }}>
+          <Search
+            placeholder="Enter City"
+            city={city}
+            setCity={setCity}
+            onSearch={handleSeacrch}
+            loading={loading}
+          />
+          <Container>
+            <Weather weather={weatherData} loading={loading} />
+          </Container>
+        </div>
       </div>
-    </div>
+      {weatherData && (
+        <div className="absolute bottom-4 w-full text-center font-medium">
+          Weather Station Dashboard
+          <span className="text-sm font-normal ml-1">- Tanmay Shinde</span>
+        </div>
+      )}
+    </>
   );
 };
 

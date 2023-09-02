@@ -3,8 +3,8 @@ import Globe from "react-globe.gl";
 const WeatherGlobe = ({ labelsData }) => {
   return (
     <Globe
-      width={550}
-      height={742}
+      width={window.innerWidth / 2}
+      height={window.innerHeight}
       backgroundColor="#ffffff00"
       globeImageUrl="//unpkg.com/three-globe/example/img/earth-day.jpg"
       labelsData={labelsData}
