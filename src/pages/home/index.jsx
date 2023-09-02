@@ -23,17 +23,17 @@ const Home = () => {
       );
       const data = await response.json();
       if (!response.ok) {
-        throw { status: response.status, data };
+        throw new Error(response.status);
       }
       console.log(data);
       setWeatherData(data);
       setLoading(false);
     } catch (error) {
-      console.log(error);
-      if (error.status === 404) {
+      console.log(error.message);
+      if (error.message === "404") {
         toast.error("Please enter a valid city");
-      } else if (error.status === 401) {
-        toast.error("Server issue, try again later");
+      } else if (error.message === "401") {
+        toast.error("Exceeded API limit for the day, come back tomorrow.");
       } else {
         toast.error("Something went wrong");
       }
