@@ -6,11 +6,12 @@ import humidity from "../../assets/icons/humidity.svg";
 import wind from "../../assets/icons/wind.svg";
 import pressure from "../../assets/icons/pressure.svg";
 
-const Location = styled.span`
+const Location = styled.div`
   margin: 15px auto;
   text-transform: capitalize;
   font-size: 28px;
   font-weight: bold;
+  text-align: center;
 `;
 const Condition = styled.span`
   margin: 20px auto;

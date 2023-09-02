@@ -3,7 +3,7 @@ import PrimaryButton from "./button/PrimaryButton";
 
 const Search = ({ setCity, onSearch, placeholder }) => {
   return (
-    <div className="w-2/4 m-auto mb-2">
+    <div className="flex justify-center mb-2">
       <input
         placeholder={placeholder}
         autoComplete="off"

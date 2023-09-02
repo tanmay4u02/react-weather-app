@@ -23,7 +23,7 @@ const Home = () => {
     }
   };
   return (
-    <div className="m-auto w-2/5 p-2 mt-10">
+    <div className="m-auto p-2 mt-16" style={{ width: "380px" }}>
       <Search
         placeholder="Enter City"
         setCity={setCity}
