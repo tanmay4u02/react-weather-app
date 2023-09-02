@@ -97,7 +97,7 @@ const Weather = ({ weather, loading = true }) => {
             Hello AR
           </span>
           <span className="m-auto text-center text-sm">
-            <img src={appLogo} className="w-16 mx-auto" />
+            <img src={appLogo} className="w-16 mx-auto" alt="App logo" />
             <div className="font-medium text-2xl mb-2 mt-4">
               Weather Station Dashboard
             </div>
