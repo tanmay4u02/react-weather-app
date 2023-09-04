@@ -12,7 +12,9 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [weatherData, setWeatherData] = useState();
 
-  const handleSeacrch = async () => {
+  const handleSeacrch = async (e) => {
+    e.preventDefault();
+
     setWeatherData(null);
     if (!city || city === "") {
       toast.error("Please enter a City!");

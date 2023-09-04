@@ -3,7 +3,7 @@ import PrimaryButton from "./button/PrimaryButton";
 
 const Search = ({ city, setCity, onSearch, placeholder, loading }) => {
   return (
-    <div className="flex justify-center mb-4">
+    <form className="flex justify-center mb-4" onSubmit={onSearch}>
       <input
         placeholder={placeholder}
         autoComplete="off"
@@ -15,9 +15,9 @@ const Search = ({ city, setCity, onSearch, placeholder, loading }) => {
         text="search"
         sx="p-1.5 px-2 inline"
         disabled={loading}
-        onClickHandler={onSearch}
+        type="submit"
       />
-    </div>
+    </form>
   );
 };
 
