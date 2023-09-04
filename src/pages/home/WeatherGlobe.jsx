@@ -1,8 +1,25 @@
+import { useEffect, useRef } from "react";
 import Globe from "react-globe.gl";
 
 const WeatherGlobe = ({ labelsData }) => {
+  const globRef = useRef();
+
+  useEffect(() => {
+    const MAP_CENTER = { lat: 0, lng: 0, altitude: 2.5 };
+    globRef.current.pointOfView(MAP_CENTER, 0);
+  }, []);
+
+  useEffect(() => {
+    labelsData &&
+      globRef.current.pointOfView(
+        { lat: labelsData[0].lat, lng: labelsData[0].lon, altitude: 2.3 },
+        0
+      );
+  }, [labelsData]);
+
   return (
     <Globe
+      ref={globRef}
       width={window.innerWidth / 2}
       height={window.innerHeight}
       backgroundColor="#ffffff00"
