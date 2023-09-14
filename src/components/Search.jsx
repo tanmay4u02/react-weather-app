@@ -11,12 +11,7 @@ const Search = ({ city, setCity, onSearch, placeholder, loading }) => {
         onChange={(e) => setCity(e.target.value)}
         className="p-1.5 px-2 bg-gray-50 border-2  border-slate-950 text-gray-900 text-sm   "
       />
-      <PrimaryButton
-        text="search"
-        sx="p-1.5 px-2 inline"
-        disabled={loading}
-        type="submit"
-      />
+      <PrimaryButton sx="p-1.5 px-2 inline" disabled={loading} type="submit" />
     </form>
   );
 };

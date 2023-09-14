@@ -1,4 +1,6 @@
-const PrimaryButton = ({ text, onClickHandler, sx, disabled, type }) => {
+import icon from "../../assets/icons/icons8-search-1.svg";
+
+const PrimaryButton = ({ onClickHandler, sx, disabled, type }) => {
   return (
     <button
       onClick={onClickHandler || null}
@@ -9,7 +11,7 @@ const PrimaryButton = ({ text, onClickHandler, sx, disabled, type }) => {
         " text-gray-100 font-medium text-sm bg-slate-900 active:bg-slate-700 disabled:opacity-50 "
       }
     >
-      {text}
+      <img src={icon} alt="search icon" className="w-8" />
     </button>
   );
 };
