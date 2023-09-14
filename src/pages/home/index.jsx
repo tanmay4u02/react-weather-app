@@ -5,10 +5,11 @@ import Search from "../../components/Search";
 import Weather from "../../components/weather";
 import api from "../../constants/api";
 import WeatherGlobe from "./WeatherGlobe";
+import Branding from "./Branding";
 
 const Home = () => {
   const [city, setCity] = useState();
-  const [labelsData, setLabelsData] = useState();
+  const [labelsData, setLabelsData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [weatherData, setWeatherData] = useState();
 
@@ -32,10 +33,12 @@ const Home = () => {
       console.log(data);
       setWeatherData(data);
       setLabelsData([
+        ...labelsData,
         {
           lat: data.coord.lat,
           lon: data.coord.lon,
-          name: city,
+          name: data.name,
+          weatherData: data,
         },
       ]);
       setLoading(false);
@@ -55,9 +58,16 @@ const Home = () => {
   };
   return (
     <>
-      <div className="flex flex-row">
-        <WeatherGlobe labelsData={labelsData} />
-        <div className="m-auto p-2 mt-24" style={{ width: "380px" }}>
+      <div className="flex flex-row flex-wrap-reverse ">
+        <WeatherGlobe
+          labelsData={labelsData}
+          setWeatherData={setWeatherData}
+          weatherData={weatherData}
+        />
+        <div
+          className="p-2 mt-32 mx-auto lg:ml-24 lg:mr-auto lg:my-auto"
+          style={{ width: "380px" }}
+        >
           <Search
             placeholder="Enter City"
             city={city}
@@ -70,12 +80,7 @@ const Home = () => {
           </Container>
         </div>
       </div>
-      {weatherData && (
-        <div className="absolute bottom-4 w-full text-center font-medium">
-          Weather Station Dashboard
-          <span className="text-sm font-normal ml-1">- Tanmay Shinde</span>
-        </div>
-      )}
+      {weatherData && <Branding />}
     </>
   );
 };
