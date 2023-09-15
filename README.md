@@ -25,4 +25,4 @@ https://openweathermap.org/current
 ### How can I appreciate this repo? ###
 
 * By giving this repo a 🌟
-* By Following : [Me on Github]([https://github.com/TanmayPShinde](https://github.com/TanmayPShinde))
+* By Following [Me on Github](https://github.com/TanmayPShinde)
