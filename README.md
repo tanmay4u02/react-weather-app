@@ -1,4 +1,4 @@
-# React Weather App - With A 3D Globe
+# React Weather App - With a 3D Globe
 
 ![image](https://github.com/TanmayPShinde/react-weather-app/assets/62463484/8b248de6-bd46-4b07-a3cc-7945d54b14d0)
 
