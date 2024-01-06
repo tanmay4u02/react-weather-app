@@ -4,8 +4,7 @@ import { toast } from "react-toastify";
 
 const WeatherGlobe = ({ labelsData, setWeatherData, weatherData }) => {
   const globRef = useRef();
-
-  console.log(process.env.REACT_APP_OPEN_WEATHER_API_KEY);
+  
   useEffect(() => {
     const MAP_CENTER = { lat: 0, lng: 0, altitude: 2.5 };
     globRef.current.pointOfView(MAP_CENTER, 0);
