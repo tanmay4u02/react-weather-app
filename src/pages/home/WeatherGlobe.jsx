@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 const WeatherGlobe = ({ labelsData, setWeatherData, weatherData }) => {
   const globRef = useRef();
 
+  console.log(process.env.REACT_APP_OPEN_WEATHER_API_KEY);
   useEffect(() => {
     const MAP_CENTER = { lat: 0, lng: 0, altitude: 2.5 };
     globRef.current.pointOfView(MAP_CENTER, 0);
@@ -44,8 +45,9 @@ const WeatherGlobe = ({ labelsData, setWeatherData, weatherData }) => {
       labelResolution={3}
       labelLabel={(d) => "click"}
       onLabelClick={(label) => {
-        if (labelsData.length > 1) setWeatherData(label.weatherData);
-        else toast.warning("Add multiple cities on Globe!");
+        if (labelsData.length > 1 || !weatherData)
+          setWeatherData(label.weatherData);
+        else toast.info("Add multiple cities on Globe to switch between them!");
       }}
     />
   );
